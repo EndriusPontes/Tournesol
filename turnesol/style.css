@@ -1,0 +1,978 @@
+/* ========================================
+   TOURNE​SOL* — IDENTIDADE VISUAL
+======================================== */
+
+:root {
+    --cream: #f3ead8;
+    --ink: #141210;
+    --tom: #e8472b;
+    --sun: #f2b705;
+    --pine: #1f4d3a;
+    --pink: #f4b6c2;
+
+    /* tokens de tema (claro por padrão) */
+    --page: #f3ead8;
+    --text: #141210;
+    --foot: #141210;
+
+    --serif: 'Fraunces', serif;
+    --sans: 'Archivo', sans-serif;
+}
+
+
+/* ========================================
+   RESET E CONFIGURAÇÕES GERAIS
+======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--page); color: var(--text); font: 400 15px/1.5 var(--sans);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* ========================================
+   BARRA ANIMADA (TICKER)
+======================================== */
+
+.ticker {
+    background: var(--text); color: var(--page); overflow: hidden;
+    white-space: nowrap;
+    font: 600 11px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 7px 0;
+}
+
+.ticker div {
+    display: inline-block;
+    animation: tk 30s linear infinite;
+}
+
+.ticker span {
+    padding-right: 2em;
+}
+
+@keyframes tk {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    padding: 14px 28px;
+
+    background: var(--page); border-bottom: 1.5px solid var(--text);
+
+    font: 600 12px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+
+
+.logo {
+    font: italic 800 30px var(--serif);
+    text-transform: none;
+    letter-spacing: -.02em;
+}
+
+b {
+    color: var(--tom);
+    display: inline-block;
+    transition: transform .6s;
+}
+
+.logo:hover b {
+    transform: rotate(180deg);
+}
+
+
+/* ========================================
+   TRANSIÇÃO DE PÁGINA
+======================================== */
+
+#curtain {
+    position: fixed;
+    inset: 0;
+
+    background: var(--tom); z-index: 99; display: grid; place-items: center;
+
+    transform: translateY(100%);
+    pointer-events: none;
+}
+
+#curtain.go {
+    animation: cur 1s cubic-bezier(.77, 0, .18, 1);
+}
+
+@keyframes cur {
+    0% {
+        transform: translateY(100%);
+    }
+
+    35%, 65% { transform: translateY(0); }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+
+/* ========================================
+   HERO — PÁGINA INICIAL
+======================================== */
+
+.hero {
+    min-height: 84vh;
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+
+    background: var(--sun);
+    border-bottom: 1.5px solid var(--text);
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 40px;
+}
+
+.hero h1 {
+    font: italic 900 clamp(64px, 17vw, 250px)/.85 var(--serif);
+    letter-spacing: -.05em;
+}
+
+.hero h1 b {
+    font-size: .7em;
+    animation: spin 14s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero p {
+    font: 600 12px var(--sans);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin: 22px 0 28px;
+}
+
+
+/* ========================================
+   ELEMENTOS DECORATIVOS — GIRASSÓIS
+======================================== */
+
+.sun {
+    position: absolute;
+
+    width: 38vw;
+    aspect-ratio: 1;
+
+    border-radius: 50%; border: 1.5px solid var(--ink);
+
+    background: repeating-conic-gradient(
+        var(--tom) 0 7.5deg,
+        transparent 7.5deg 15deg
+    );
+
+    right: -9vw;
+    bottom: -14vw;
+
+    animation: spin 60s linear infinite;
+    opacity: .9;
+}
+
+.sun.l {
+    left: -12vw;
+    top: -14vw;
+
+    right: auto;
+    bottom: auto;
+
+    background: repeating-conic-gradient(
+        var(--pine) 0 7.5deg,
+        transparent 7.5deg 15deg
+    );
+
+    animation-direction: reverse;
+}
+
+
+/* ========================================
+   BOTÕES
+======================================== */
+
+.btn {
+    display: inline-block;
+
+    border: 1.5px solid var(--text);
+    background: var(--text); color: var(--page); padding: 14px 30px;
+
+    font: 600 12px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.btn:hover {
+    background: var(--tom);
+    border-color: var(--tom);
+
+    transform: translate(-3px, -3px);
+
+    color: var(--cream);
+    box-shadow: 3px 3px 0 var(--text);
+}
+
+.btn.o {
+    background: transparent; color: var(--text);
+}
+
+
+/* ========================================
+   SEÇÕES E TÍTULOS
+======================================== */
+
+section {
+    padding: 70px 28px;
+}
+
+.h2 {
+    font: italic 800 clamp(36px, 6vw, 80px)/1 var(--serif);
+    letter-spacing: -.03em;
+
+    margin-bottom: 34px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    gap: 20px;
+}
+
+.h2 small {
+    font: 600 12px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-style: normal;
+}
+
+
+/* ========================================
+   GRID DE PRODUTOS
+======================================== */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 26px 20px;
+}
+
+.card .art {
+    aspect-ratio: 3 / 4;
+    transition: .4s;
+}
+
+.card:hover .art {
+    transform: rotate(-1.5deg) scale(1.02);
+}
+
+.card h3 {
+    font: 600 17px var(--serif);
+    margin-top: 12px;
+}
+
+.card .cat {
+    font: 600 10px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    opacity: .6;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.price s {
+    opacity: .5;
+    margin-right: 8px;
+    font-weight: 400;
+}
+
+.tag {
+    background: var(--tom);
+    color: var(--cream);
+
+    font: 600 10px var(--sans);
+
+    padding: 3px 8px;
+    letter-spacing: .1em;
+    margin-left: 6px;
+}
+
+
+/* ========================================
+   ARTE E IMAGENS DOS PRODUTOS
+======================================== */
+
+.art {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--bg);
+    color: var(--fg);
+
+    border: 1.5px solid var(--text);
+
+    display: grid;
+    place-items: center;
+}
+
+.art img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    z-index: 2;
+}
+
+.art span {
+    font: italic 900 clamp(34px, 5vw, 64px) var(--serif);
+    letter-spacing: -.04em;
+    transform: rotate(-8deg);
+}
+
+.art i {
+    position: absolute;
+    right: 12px;
+    top: 4px;
+
+    font: 900 44px var(--serif);
+}
+
+
+/* ========================================
+   COLUNAS DE CONTEÚDO
+======================================== */
+
+.cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    border: 1.5px solid var(--text);
+}
+
+.col { color: var(--ink); padding: 44px 28px;
+    min-height: 340px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-right: 1.5px solid var(--text);
+
+    transition: .3s;
+}
+
+.col:last-child {
+    border: 0;
+}
+
+.col:hover { filter: saturate(1.3); }
+
+.col h3 {
+    font: italic 800 44px/1 var(--serif);
+    transition: transform .3s;
+}
+
+.col small {
+    font: 600 11px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   MANIFESTO DA MARCA
+======================================== */
+
+.manifesto {
+    background: var(--pine);
+    color: var(--cream);
+    text-align: center;
+}
+
+.manifesto p {
+    font: italic 400 clamp(26px, 4vw, 52px)/1.2 var(--serif);
+
+    max-width: 960px;
+    margin: auto;
+}
+
+.manifesto em {
+    color: var(--sun);
+}
+
+
+/* ========================================
+   FILTROS DA LOJA
+======================================== */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+.chip {
+    border: 1.5px solid var(--text);
+
+    padding: 7px 16px;
+    border-radius: 99px;
+
+    font: 600 11px var(--sans);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    background: none;
+}
+
+.chip.on, .chip:hover { background: var(--text); color: var(--page);
+}
+
+
+/* ========================================
+   PÁGINA DE PRODUTO
+======================================== */
+
+.pd {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+
+    gap: 50px;
+    padding: 50px 28px;
+}
+
+.pd .art {
+    aspect-ratio: 4 / 5;
+}
+
+.pd h1 {
+    font: italic 800 clamp(40px, 5vw, 72px)/1 var(--serif);
+
+    letter-spacing: -.03em;
+    margin: 8px 0 14px;
+}
+
+.pd .price {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+
+/* ========================================
+   TAMANHOS E CORES
+======================================== */
+
+.lbl {
+    font: 600 11px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    margin: 24px 0 10px;
+}
+
+.sz,
+.sw {
+    display: inline-grid;
+    place-items: center;
+
+    min-width: 46px;
+    height: 46px;
+
+    border: 1.5px solid var(--text);
+    margin: 0 6px 6px 0;
+
+    cursor: pointer; font-weight: 600; background: none; color: var(--text);
+}
+
+.sz.on { background: var(--text); color: var(--page);
+}
+
+.sw {
+    border-radius: 50%;
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+}
+
+.sw.on {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+
+/* ========================================
+   NAVEGAÇÃO INTERNA
+======================================== */
+
+.crumb {
+    font: 600 11px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    opacity: .6;
+}
+
+
+/* ========================================
+   CARRINHO DE COMPRAS
+======================================== */
+
+.cart {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px 28px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+
+    gap: 18px;
+    align-items: center;
+
+    padding: 16px 0;
+    border-bottom: 1.5px solid var(--text);
+}
+
+.row .art {
+    aspect-ratio: 3 / 4;
+}
+
+.row .art span {
+    font-size: 18px;
+}
+
+.row .art i {
+    display: none;
+}
+
+.row button {
+    background: none;
+    border: 0;
+
+    cursor: pointer;
+    text-decoration: underline; font: inherit; color: inherit;
+}
+
+
+/* ========================================
+   CAIXA DE FRETE E PAGAMENTO
+======================================== */
+
+.box {
+    border: 1.5px solid var(--text);
+
+    padding: 24px;
+    margin-top: 30px; background: var(--pink); color: var(--ink);
+}
+
+.box input {
+    padding: 13px; border: 1.5px solid var(--ink); background: var(--cream); color: var(--ink);
+
+    font: inherit;
+    margin-right: 8px;
+
+    width: 170px;
+}
+
+.opt {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--ink);
+}
+
+.tot {
+    font: italic 800 40px var(--serif);
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 20px;
+}
+
+
+/* ========================================
+   NOTIFICAÇÕES (TOAST)
+======================================== */
+
+.toast {
+    position: fixed;
+
+    bottom: 24px;
+    left: 50%;
+
+    transform: translate(-50%, 90px);
+
+    background: var(--text); color: var(--page); padding: 14px 26px;
+    z-index: 50;
+
+    transition: .4s;
+    font-weight: 600;
+}
+
+.toast.on {
+    transform: translate(-50%, 0);
+}
+
+
+/* ========================================
+   ANIMAÇÕES DE ENTRADA
+======================================== */
+
+.rv {
+    opacity: 0;
+    transform: translateY(34px);
+
+    transition: 1s cubic-bezier(.2, .7, .2, 1);
+}
+
+.rv.in {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* ========================================
+   RODAPÉ
+======================================== */
+
+footer { background: var(--foot); color: var(--cream); border-top: 1.5px solid var(--text);
+
+    padding: 60px 28px;
+    text-align: center;
+}
+
+footer .big {
+    font: italic 900 clamp(60px, 14vw, 200px)/.9 var(--serif);
+    letter-spacing: -.05em;
+}
+
+footer p {
+    opacity: .6;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE — TABLETS E CELULARES
+======================================== */
+
+@media (max-width: 800px) {
+
+    .pd,
+    .cols {
+        grid-template-columns: 1fr;
+    }
+
+    .col {
+        border-right: 0;
+        border-bottom: 1.5px solid var(--text);
+    }
+
+    header {
+        padding: 12px 16px;
+    }
+
+}
+
+
+/* ========================================
+   ANIMAÇÕES — ENTRADA DA HERO E DETALHES
+======================================== */
+
+.hero { color: var(--ink); }
+
+/* letras do título sobem em sequência (uma única entrada orquestrada) */
+.hero h1 span {
+    display: inline-block;
+    animation: rise .9s cubic-bezier(.2, .8, .2, 1) backwards;
+    animation-delay: calc(var(--i) * 55ms + 150ms);
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(.6em) rotate(8deg); }
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(14px); }
+}
+
+.hero p { animation: fade .8s .9s backwards; }
+.hero .btn { animation: fade .8s 1.1s backwards; background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.hero .btn:hover { background: var(--tom); border-color: var(--tom); box-shadow: 3px 3px 0 var(--ink); }
+
+/* cartões entram em cascata */
+.grid .rv:nth-child(4n+2) { transition-delay: .08s; }
+.grid .rv:nth-child(4n+3) { transition-delay: .16s; }
+.grid .rv:nth-child(4n+4) { transition-delay: .24s; }
+
+.col:hover h3 { transform: translateX(8px); }
+footer .big b { animation: spin 14s linear infinite; }
+
+
+
+/* ========================================
+   TEMA ESCURO
+======================================== */
+
+[data-theme="dark"] {
+    --page: #15110e;
+    --text: #f3ead8;
+    --foot: #0b0907;
+    color-scheme: dark;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 18px;
+}
+
+.switch {
+    position: relative;
+    flex: none;
+    width: 46px;
+    height: 26px;
+    padding: 0;
+    border: 1.5px solid var(--text);
+    border-radius: 99px;
+    background: none;
+    cursor: pointer;
+}
+
+.switch i {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--tom);
+    transition: transform .45s cubic-bezier(.6, -.4, .3, 1.4), background .3s, box-shadow .3s;
+}
+
+[data-theme="dark"] .switch i {
+    transform: translateX(20px);
+    background: var(--sun);
+    box-shadow: inset -6px -3px 0 0 var(--page);
+}
+
+/* onda que revela o novo tema */
+.wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+
+
+/* ========================================
+   LETREIRO (BARRA SUPERIOR)
+======================================== */
+
+.ticker {
+    position: relative;
+    background: var(--ink);
+    color: var(--sun);
+    padding: 8px 0 15px;
+    font-size: 12px;
+    text-shadow: 0 0 8px rgba(242, 183, 5, .55);
+}
+
+.ticker:hover div { animation-play-state: paused; }
+
+.ticker i {
+    display: inline-block;
+    font-style: normal;
+    color: var(--tom);
+    margin: 0 .9em;
+    text-shadow: none;
+    animation: spin 3s linear infinite;
+}
+
+/* lâmpadas do letreiro piscando em alternância */
+.ticker::before,
+.ticker::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    height: 5px;
+    background: radial-gradient(circle, var(--sun) 1.7px, transparent 2.3px) 0 0 / 16px 5px repeat-x;
+    animation: bulb 1s infinite;
+}
+
+.ticker::after {
+    background-position: 8px 0;
+    animation-delay: -.5s;
+}
+
+@keyframes bulb {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: .15; }
+}
+
+
+/* ========================================
+   HOVER NAS PEÇAS
+======================================== */
+
+.card .art img { transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
+.card:hover .art img { transform: scale(1.07); }
+
+.card h3 { transition: transform .35s; }
+.card:hover h3 { transform: translateX(6px); }
+
+/* flor da marca "desabrocha" no canto */
+.card .art::before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 38px;
+    height: 38px;
+    z-index: 3;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-34 -34 68 68'%3E%3Cg fill='%23f2b705' stroke='%23141210' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(0)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(72)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(144)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(216)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(288)'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+    transform: scale(0) rotate(-120deg);
+    transition: transform .55s cubic-bezier(.3, 1.5, .5, 1);
+}
+
+.card:hover .art::before,
+.card:focus-visible .art::before { transform: none; }
+
+/* etiqueta sobe de baixo */
+.card .art::after {
+    content: "Ver peça";
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 3;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 7px 12px;
+    font: 600 11px var(--sans);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    transform: translateY(160%);
+    transition: transform .4s cubic-bezier(.2, .8, .2, 1);
+}
+
+.card:hover .art::after,
+.card:focus-visible .art::after { transform: none; }
+
+
+/* ========================================
+   CARREGAMENTO COM A FLOR
+======================================== */
+
+.flor {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    animation: spin .8s linear infinite;
+}
+
+#curtain .flor { width: min(22vmin, 170px); height: min(22vmin, 170px); color: var(--sun); }
+#curtain:not(.go) .flor { animation: none; }
+
+.wipe .flor { width: 22vmin; height: 22vmin; color: var(--sun); }
+
+.btn .flor { width: 18px; height: 18px; vertical-align: middle; }
+
+.loading { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+.loading .flor { width: 26px; height: 26px; color: var(--tom); }
+
+#fr > * { animation: fade .5s backwards; }
+
+
+/* ========================================
+   ACESSIBILIDADE — MOVIMENTO REDUZIDO
+   (mantém fades suaves; remove só loops e movimentos grandes)
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .ticker div,
+    .sun,
+    .hero h1 b,
+    .hero h1 span,
+    .hero p,
+    .hero .btn,
+    footer .big b,
+    #curtain.go,
+    .ticker::before,
+    .ticker::after,
+    .ticker i,
+    .flor,
+    #fr > * { animation: none; }
+
+    .rv { transform: none; transition: opacity .6s; }
+
+    .card:hover .art,
+    .btn:hover,
+    .col:hover h3 { transform: none; }
+}
