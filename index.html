@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Configurações básicas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/jpeg" href="src/Tournesollogo.jpg">
+
+    <title>Tournesol*</title>
+
+    <!-- Conexão com Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+    <!-- Fontes do projeto -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Archivo:wght@400;600;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS principal -->
+    <script>try{document.documentElement.dataset.theme=localStorage.getItem("t_theme")||"light"}catch(e){}</script>
+    <style>
+
+/* ========================================
+   TOURNESOL* — IDENTIDADE VISUAL
+======================================== */
+
+:root {
+    --cream: #f3ead8;
+    --ink: #141210;
+    --tom: #e8472b;
+    --sun: #f2b705;
+    --pine: #1f4d3a;
+    --pink: #f4b6c2;
+
+    /* tokens de tema (claro por padrão) */
+    --page: #f3ead8;
+    --text: #141210;
+    --foot: #141210;
+
+    --serif: 'Fraunces', serif;
+    --sans: 'Archivo', sans-serif;
+}
+
+
+/* ========================================
+   RESET E CONFIGURAÇÕES GERAIS
+======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--page); color: var(--text); font: 400 15px/1.5 var(--sans);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* ========================================
+   BARRA ANIMADA (TICKER)
+======================================== */
+
+.ticker {
+    background: var(--text); color: var(--page); overflow: hidden;
+    white-space: nowrap;
+    font: 600 11px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 7px 0;
+}
+
+.ticker div {
+    display: inline-block;
+    animation: tk 30s linear infinite;
+}
+
+.ticker span {
+    padding-right: 2em;
+}
+
+@keyframes tk {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    padding: 14px 28px;
+
+    background: var(--page); border-bottom: 1.5px solid var(--text);
+
+    font: 600 12px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+
+
+.logo {
+    font: italic 800 30px var(--serif);
+    text-transform: none;
+    letter-spacing: -.02em;
+}
+
+b {
+    color: var(--tom);
+    display: inline-block;
+    transition: transform .6s;
+}
+
+.logo:hover b {
+    transform: rotate(180deg);
+}
+
+
+/* ========================================
+   TRANSIÇÃO DE PÁGINA
+======================================== */
+
+#curtain {
+    position: fixed;
+    inset: 0;
+
+    background: var(--tom); z-index: 99; display: grid; place-items: center;
+
+    transform: translateY(100%);
+    pointer-events: none;
+}
+
+#curtain.go {
+    animation: cur 1s cubic-bezier(.77, 0, .18, 1);
+}
+
+@keyframes cur {
+    0% {
+        transform: translateY(100%);
+    }
+
+    35%, 65% { transform: translateY(0); }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+
+/* ========================================
+   HERO — PÁGINA INICIAL
+======================================== */
+
+.hero {
+    min-height: 84vh;
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+
+    background: var(--sun);
+    border-bottom: 1.5px solid var(--text);
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 40px;
+}
+
+.hero h1 {
+    font: italic 900 clamp(64px, 17vw, 250px)/.85 var(--serif);
+    letter-spacing: -.05em;
+}
+
+.hero h1 b {
+    font-size: .7em;
+    animation: spin 14s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero p {
+    font: 600 12px var(--sans);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin: 22px 0 28px;
+}
+
+
+/* ========================================
+   ELEMENTOS DECORATIVOS — GIRASSÓIS
+======================================== */
+
+.sun {
+    position: absolute;
+
+    width: 38vw;
+    aspect-ratio: 1;
+
+    border-radius: 50%; border: 1.5px solid var(--ink);
+
+    background: repeating-conic-gradient(
+        var(--tom) 0 7.5deg,
+        transparent 7.5deg 15deg
+    );
+
+    right: -9vw;
+    bottom: -14vw;
+
+    animation: spin 60s linear infinite;
+    opacity: .9;
+}
+
+.sun.l {
+    left: -12vw;
+    top: -14vw;
+
+    right: auto;
+    bottom: auto;
+
+    background: repeating-conic-gradient(
+        var(--pine) 0 7.5deg,
+        transparent 7.5deg 15deg
+    );
+
+    animation-direction: reverse;
+}
+
+
+/* ========================================
+   BOTÕES
+======================================== */
+
+.btn {
+    display: inline-block;
+
+    border: 1.5px solid var(--text);
+    background: var(--text); color: var(--page); padding: 14px 30px;
+
+    font: 600 12px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.btn:hover {
+    background: var(--tom);
+    border-color: var(--tom);
+
+    transform: translate(-3px, -3px);
+
+    color: var(--cream);
+    box-shadow: 3px 3px 0 var(--text);
+}
+
+.btn.o {
+    background: transparent; color: var(--text);
+}
+
+
+/* ========================================
+   SEÇÕES E TÍTULOS
+======================================== */
+
+section {
+    padding: 70px 28px;
+}
+
+.h2 {
+    font: italic 800 clamp(36px, 6vw, 80px)/1 var(--serif);
+    letter-spacing: -.03em;
+
+    margin-bottom: 34px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    gap: 20px;
+}
+
+.h2 small {
+    font: 600 12px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-style: normal;
+}
+
+
+/* ========================================
+   GRID DE PRODUTOS
+======================================== */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 26px 20px;
+}
+
+.card .art {
+    aspect-ratio: 3 / 4;
+    transition: .4s;
+}
+
+.card:hover .art {
+    transform: rotate(-1.5deg) scale(1.02);
+}
+
+.card h3 {
+    font: 600 17px var(--serif);
+    margin-top: 12px;
+}
+
+.card .cat {
+    font: 600 10px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    opacity: .6;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.price s {
+    opacity: .5;
+    margin-right: 8px;
+    font-weight: 400;
+}
+
+.tag {
+    background: var(--tom);
+    color: var(--cream);
+
+    font: 600 10px var(--sans);
+
+    padding: 3px 8px;
+    letter-spacing: .1em;
+    margin-left: 6px;
+}
+
+
+/* ========================================
+   ARTE E IMAGENS DOS PRODUTOS
+======================================== */
+
+.art {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--bg);
+    color: var(--fg);
+
+    border: 1.5px solid var(--text);
+
+    display: grid;
+    place-items: center;
+}
+
+.art img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    z-index: 2;
+}
+
+.art span {
+    font: italic 900 clamp(34px, 5vw, 64px) var(--serif);
+    letter-spacing: -.04em;
+    transform: rotate(-8deg);
+}
+
+.art i {
+    position: absolute;
+    right: 12px;
+    top: 4px;
+
+    font: 900 44px var(--serif);
+}
+
+
+/* ========================================
+   COLUNAS DE CONTEÚDO
+======================================== */
+
+.cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    border: 1.5px solid var(--text);
+}
+
+.col { color: var(--ink); padding: 44px 28px;
+    min-height: 340px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-right: 1.5px solid var(--text);
+
+    transition: .3s;
+}
+
+.col:last-child {
+    border: 0;
+}
+
+.col:hover { filter: saturate(1.3); }
+
+.col h3 {
+    font: italic 800 44px/1 var(--serif);
+    transition: transform .3s;
+}
+
+.col small {
+    font: 600 11px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   MANIFESTO DA MARCA
+======================================== */
+
+.manifesto {
+    background: var(--pine);
+    color: var(--cream);
+    text-align: center;
+}
+
+.manifesto p {
+    font: italic 400 clamp(26px, 4vw, 52px)/1.2 var(--serif);
+
+    max-width: 960px;
+    margin: auto;
+}
+
+.manifesto em {
+    color: var(--sun);
+}
+
+
+/* ========================================
+   FILTROS DA LOJA
+======================================== */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+.chip {
+    border: 1.5px solid var(--text);
+
+    padding: 7px 16px;
+    border-radius: 99px;
+
+    font: 600 11px var(--sans);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    background: none;
+}
+
+.chip.on, .chip:hover { background: var(--text); color: var(--page);
+}
+
+
+/* ========================================
+   PÁGINA DE PRODUTO
+======================================== */
+
+.pd {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+
+    gap: 50px;
+    padding: 50px 28px;
+}
+
+.pd .art {
+    aspect-ratio: 4 / 5;
+}
+
+.pd h1 {
+    font: italic 800 clamp(40px, 5vw, 72px)/1 var(--serif);
+
+    letter-spacing: -.03em;
+    margin: 8px 0 14px;
+}
+
+.pd .price {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+
+/* ========================================
+   TAMANHOS E CORES
+======================================== */
+
+.lbl {
+    font: 600 11px var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    margin: 24px 0 10px;
+}
+
+.sz,
+.sw {
+    display: inline-grid;
+    place-items: center;
+
+    min-width: 46px;
+    height: 46px;
+
+    border: 1.5px solid var(--text);
+    margin: 0 6px 6px 0;
+
+    cursor: pointer; font-weight: 600; background: none; color: var(--text);
+}
+
+.sz.on { background: var(--text); color: var(--page);
+}
+
+.sw {
+    border-radius: 50%;
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+}
+
+.sw.on {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+
+/* ========================================
+   NAVEGAÇÃO INTERNA
+======================================== */
+
+.crumb {
+    font: 600 11px var(--sans);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    opacity: .6;
+}
+
+
+/* ========================================
+   CARRINHO DE COMPRAS
+======================================== */
+
+.cart {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px 28px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+
+    gap: 18px;
+    align-items: center;
+
+    padding: 16px 0;
+    border-bottom: 1.5px solid var(--text);
+}
+
+.row .art {
+    aspect-ratio: 3 / 4;
+}
+
+.row .art span {
+    font-size: 18px;
+}
+
+.row .art i {
+    display: none;
+}
+
+.row button {
+    background: none;
+    border: 0;
+
+    cursor: pointer;
+    text-decoration: underline; font: inherit; color: inherit;
+}
+
+
+/* ========================================
+   CAIXA DE FRETE E PAGAMENTO
+======================================== */
+
+.box {
+    border: 1.5px solid var(--text);
+
+    padding: 24px;
+    margin-top: 30px; background: var(--pink); color: var(--ink);
+}
+
+.box input {
+    padding: 13px; border: 1.5px solid var(--ink); background: var(--cream); color: var(--ink);
+
+    font: inherit;
+    margin-right: 8px;
+
+    width: 170px;
+}
+
+.opt {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--ink);
+}
+
+.tot {
+    font: italic 800 40px var(--serif);
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 20px;
+}
+
+
+/* ========================================
+   NOTIFICAÇÕES (TOAST)
+======================================== */
+
+.toast {
+    position: fixed;
+
+    bottom: 24px;
+    left: 50%;
+
+    transform: translate(-50%, 90px);
+
+    background: var(--text); color: var(--page); padding: 14px 26px;
+    z-index: 50;
+
+    transition: .4s;
+    font-weight: 600;
+}
+
+.toast.on {
+    transform: translate(-50%, 0);
+}
+
+
+/* ========================================
+   ANIMAÇÕES DE ENTRADA
+======================================== */
+
+.rv {
+    opacity: 0;
+    transform: translateY(34px);
+
+    transition: 1s cubic-bezier(.2, .7, .2, 1);
+}
+
+.rv.in {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* ========================================
+   RODAPÉ
+======================================== */
+
+footer { background: var(--foot); color: var(--cream); border-top: 1.5px solid var(--text);
+
+    padding: 60px 28px;
+    text-align: center;
+}
+
+footer .big {
+    font: italic 900 clamp(60px, 14vw, 200px)/.9 var(--serif);
+    letter-spacing: -.05em;
+}
+
+footer p {
+    opacity: .6;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE — TABLETS E CELULARES
+======================================== */
+
+@media (max-width: 800px) {
+
+    .pd,
+    .cols {
+        grid-template-columns: 1fr;
+    }
+
+    .col {
+        border-right: 0;
+        border-bottom: 1.5px solid var(--text);
+    }
+
+    header {
+        padding: 12px 16px;
+    }
+
+}
+
+
+/* ========================================
+   ANIMAÇÕES — ENTRADA DA HERO E DETALHES
+======================================== */
+
+.hero { color: var(--ink); }
+
+/* letras do título sobem em sequência (uma única entrada orquestrada) */
+.hero h1 span {
+    display: inline-block;
+    animation: rise .9s cubic-bezier(.2, .8, .2, 1) backwards;
+    animation-delay: calc(var(--i) * 55ms + 150ms);
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(.6em) rotate(8deg); }
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(14px); }
+}
+
+.hero p { animation: fade .8s .9s backwards; }
+.hero .btn { animation: fade .8s 1.1s backwards; background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.hero .btn:hover { background: var(--tom); border-color: var(--tom); box-shadow: 3px 3px 0 var(--ink); }
+
+/* cartões entram em cascata */
+.grid .rv:nth-child(4n+2) { transition-delay: .08s; }
+.grid .rv:nth-child(4n+3) { transition-delay: .16s; }
+.grid .rv:nth-child(4n+4) { transition-delay: .24s; }
+
+.col:hover h3 { transform: translateX(8px); }
+footer .big b { animation: spin 14s linear infinite; }
+
+
+
+/* ========================================
+   TEMA ESCURO
+======================================== */
+
+[data-theme="dark"] {
+    --page: #15110e;
+    --text: #f3ead8;
+    --foot: #0b0907;
+    color-scheme: dark;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 18px;
+}
+
+.switch {
+    position: relative;
+    flex: none;
+    width: 46px;
+    height: 26px;
+    padding: 0;
+    border: 1.5px solid var(--text);
+    border-radius: 99px;
+    background: none;
+    cursor: pointer;
+}
+
+.switch i {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--tom);
+    transition: transform .45s cubic-bezier(.6, -.4, .3, 1.4), background .3s, box-shadow .3s;
+}
+
+[data-theme="dark"] .switch i {
+    transform: translateX(20px);
+    background: var(--sun);
+    box-shadow: inset -6px -3px 0 0 var(--page);
+}
+
+/* onda que revela o novo tema */
+.wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+
+
+/* ========================================
+   LETREIRO (BARRA SUPERIOR)
+======================================== */
+
+.ticker {
+    position: relative;
+    background: var(--ink);
+    color: var(--sun);
+    padding: 8px 0 15px;
+    font-size: 12px;
+    text-shadow: 0 0 8px rgba(242, 183, 5, .55);
+}
+
+.ticker:hover div { animation-play-state: paused; }
+
+.ticker i {
+    display: inline-block;
+    font-style: normal;
+    color: var(--tom);
+    margin: 0 .9em;
+    text-shadow: none;
+    animation: spin 3s linear infinite;
+}
+
+/* lâmpadas do letreiro piscando em alternância */
+.ticker::before,
+.ticker::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    height: 5px;
+    background: radial-gradient(circle, var(--sun) 1.7px, transparent 2.3px) 0 0 / 16px 5px repeat-x;
+    animation: bulb 1s infinite;
+}
+
+.ticker::after {
+    background-position: 8px 0;
+    animation-delay: -.5s;
+}
+
+@keyframes bulb {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: .15; }
+}
+
+
+/* ========================================
+   HOVER NAS PEÇAS
+======================================== */
+
+.card .art img { transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
+.card:hover .art img { transform: scale(1.07); }
+
+.card h3 { transition: transform .35s; }
+.card:hover h3 { transform: translateX(6px); }
+
+/* flor da marca "desabrocha" no canto */
+.card .art::before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 38px;
+    height: 38px;
+    z-index: 3;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-34 -34 68 68'%3E%3Cg fill='%23f2b705' stroke='%23141210' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(0)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(72)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(144)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(216)'/%3E%3Cpath d='M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z' transform='rotate(288)'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+    transform: scale(0) rotate(-120deg);
+    transition: transform .55s cubic-bezier(.3, 1.5, .5, 1);
+}
+
+.card:hover .art::before,
+.card:focus-visible .art::before { transform: none; }
+
+/* etiqueta sobe de baixo */
+.card .art::after {
+    content: "Ver peça";
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 3;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 7px 12px;
+    font: 600 11px var(--sans);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    transform: translateY(160%);
+    transition: transform .4s cubic-bezier(.2, .8, .2, 1);
+}
+
+.card:hover .art::after,
+.card:focus-visible .art::after { transform: none; }
+
+
+/* ========================================
+   CARREGAMENTO COM A FLOR
+======================================== */
+
+.flor {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    animation: spin .8s linear infinite;
+}
+
+#curtain .flor { width: min(22vmin, 170px); height: min(22vmin, 170px); color: var(--sun); }
+#curtain:not(.go) .flor { animation: none; }
+
+.wipe .flor { width: 22vmin; height: 22vmin; color: var(--sun); }
+
+.btn .flor { width: 18px; height: 18px; vertical-align: middle; }
+
+.loading { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+.loading .flor { width: 26px; height: 26px; color: var(--tom); }
+
+#fr > * { animation: fade .5s backwards; }
+
+
+/* ========================================
+   ACESSIBILIDADE — MOVIMENTO REDUZIDO
+   (mantém fades suaves; remove só loops e movimentos grandes)
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .ticker div,
+    .sun,
+    .hero h1 b,
+    .hero h1 span,
+    .hero p,
+    .hero .btn,
+    footer .big b,
+    #curtain.go,
+    .ticker::before,
+    .ticker::after,
+    .ticker i,
+    .flor,
+    #fr > * { animation: none; }
+
+    .rv { transform: none; transition: opacity .6s; }
+
+    .card:hover .art,
+    .btn:hover,
+    .col:hover h3 { transform: none; }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Flor da marca (usada nos carregamentos) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="flor" viewBox="-34 -34 68 68"><g fill="currentColor"><path d="M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z" transform="rotate(0)"/><path d="M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z" transform="rotate(72)"/><path d="M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z" transform="rotate(144)"/><path d="M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z" transform="rotate(216)"/><path d="M0 0C-14-6-15-26 0-32C15-26 14-6 0 0Z" transform="rotate(288)"/></g></symbol></svg>
+
+    <!-- Animação de transição -->
+    <div id="curtain" aria-hidden="true"><svg class="flor"><use href="#flor"/></svg></div>
+
+    <!-- Barra de informações animada -->
+    <div class="ticker">
+        <div>
+            <span>Frete grátis acima de R$ 800 <i>✺</i> Drop 04 — Girassol de Concreto <i>✺</i> Parcele em 6x <i>✺</i> Frete grátis acima de R$ 800 <i>✺</i> Drop 04 — Girassol de Concreto <i>✺</i> Parcele em 6x <i>✺</i> Frete grátis acima de R$ 800 <i>✺</i> Drop 04 — Girassol de Concreto <i>✺</i> Parcele em 6x <i>✺</i> </span>
+            <span aria-hidden="true">Frete grátis acima de R$ 800 <i>✺</i> Drop 04 — Girassol de Concreto <i>✺</i> Parcele em 6x <i>✺</i> Frete grátis acima de R$ 800 <i>✺</i> Drop 04 — Girassol de Concreto <i>✺</i> Parcele em 6x <i>✺</i> Frete grátis acima de R$ 800 <i>✺</i> Drop 04 — Girassol de Concreto <i>✺</i> Parcele em 6x <i>✺</i> </span>
+        </div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+
+        <!-- Link para a loja -->
+        <a href="#/loja">Loja</a>
+
+        <!-- Logo -->
+        <a class="logo" href="#/">
+            Tournesol<b>*</b>
+        </a>
+
+        <!-- Sacola de compras -->
+        <div class="right">
+            <button id="theme" class="switch" type="button" aria-pressed="false" aria-label="Alternar tema escuro"><i></i></button>
+            <a href="#/carrinho">Sacola (<span id="cnt">0</span>)</a>
+        </div>
+
+    </header>
+
+    <!-- Conteúdo principal renderizado pelo JavaScript -->
+    <main id="app"></main>
+
+    <!-- Rodapé -->
+    <footer>
+
+        <div class="big">
+            Tournesol<b>*</b>
+        </div>
+
+        <p>
+            Streetwear e alfaiataria · Maringá, PR · Quem faz a moda é você
+            <br>
+            © 2026 Tournesol* — todos os direitos reservados
+        </p>
+
+    </footer>
+
+    <!-- JavaScript principal -->
+    <script>
+
+/* ============================================
+   TOURNESOL* — APP.JS
+   Loja virtual | Drop 04 — Girassol de Concreto
+============================================ */
+
+/* 1. CATÁLOGO DE PRODUTOS */
+
+const P = [
+    {
+        id: 1,
+        n: 'Blazer Tournesol',
+        c: 'Alfaiataria',
+        p: 1290,
+        o: 1590,
+        bg: '#f2b705',
+        fg: '#141210',
+        cores: [
+            ['Girassol', '#463504'],
+            ['Tinta', '#141210']
+        ],
+        t: ['P', 'M', 'G', 'GG'],
+        d: 'Blazer oversized de lã fria, ombros estruturados e forro estampado. Alfaiataria feita para andar na rua.',
+        img: 'src/blazer.jpg'
+    },
+    {
+        id: 2,
+        n: 'Calça Pregueada',
+        c: 'Alfaiataria',
+        p: 690,
+        bg: '#1f4d3a',
+        fg: '#f3ead8',
+        cores: [
+            ['Pinho', '#1f4d3a'],
+            ['Areia', '#d8c9a8']
+        ],
+        t: ['36', '38', '40', '42', '44'],
+        d: 'Cintura alta, duas pregas e barra larga. Caimento fluido, tecido com leve brilho.',
+        img: 'src/calca pregueada.jpg'
+    },
+    {
+        id: 3,
+        n: 'Moletom Touresol*',
+        c: 'Streetwear',
+        p: 420,
+        o: 520,
+        bg: '#e8472b',
+        fg: '#f3ead8',
+        cores: [
+            ['Tomate', '#04455e'],
+            ['Creme', '#f3ead8']
+        ],
+        t: ['P', 'M', 'G', 'GG'],
+        d: 'Moletom Tournesol* com bordado em alto-relevo. Corte boxy, punhos largos.',
+        img: 'src/blusa.jpg'
+    },
+    {
+        id: 4,
+        n: 'Camiseta Tournesol*',
+        c: 'Camisaria',
+        p: 380,
+        bg: '#f4b6c2',
+        fg: '#141210',
+        cores: [
+            ['Azul-Escuro', '#000445'],
+            ['Caramelo', '#b68117']
+        ],
+        t: ['P', 'M', 'G'],
+        d: 'Camiseta Tournesol* 100% algodão e confortável de usar.',
+        img: 'src/camiseta.jpg'
+    },
+    {
+        id: 5,
+        n: 'Trench Concreto',
+        c: 'Casacos',
+        p: 1850,
+        bg: '#9a968c',
+        fg: '#141210',
+        cores: [
+            ['Concreto', '#cfc19e']
+        ],
+        t: ['M', 'G', 'GG'],
+        d: 'Trench longo em gabardine impermeável, cinto removível e fenda traseira.',
+        img: 'src/Trench.jpg'
+    },
+    {
+        id: 6,
+        n: 'Bermuda Sartorial',
+        c: 'Streetwear',
+        p: 340,
+        o: 420,
+        bg: '#080502',
+        fg: '#f2b705',
+        cores: [
+            ['Madeira', '#4e3011'],
+            ['Pinho', '#1f4d3a']
+        ],
+        t: ['P', 'M', 'G'],
+        d: 'Bermuda de alfaiataria na altura do joelho, passantes largos e bolso.',
+        img: 'src/bermuda.jpg'
+    },
+    {
+        id: 7,
+        n: 'Colete Retrô',
+        c: 'Alfaiataria',
+        p: 520,
+        bg: '#e8472b',
+        fg: '#f2b705',
+        cores: [
+            ['Tomate', '#096c8a'],
+            ['Girassol', '#f2b705']
+        ],
+        t: ['P', 'M', 'G'],
+        d: 'Colete de jacquard inspirado nos anos 70. Costas em cetim com ajuste de fivela.',
+        img: 'src/colete.jpg'
+    },
+    {
+        id: 8,
+        n: 'Boné Tournesol*',
+        c: 'Acessórios',
+        p: 190,
+        bg: '#1f4d3a',
+        fg: '#f2b705',
+        cores: [
+            ['Pinho', '#d4cbb7'],
+            ['Creme', '#665635']
+        ],
+        t: ['Único'],
+        d: 'Boné de seis gomos em sarja, aba curva e asterisco bordado na frente.',
+        img: 'src/bone.jpg'
+    }
+];
+
+
+/* 2. FUNÇÕES AUXILIARES */
+
+const $ = selector => document.querySelector(selector);
+
+const brl = value => {
+    return Number(value).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+};
+
+
+/* 3. CARRINHO E LOCAL STORAGE */
+
+let cart = [];
+
+try {
+    const savedCart = JSON.parse(
+        localStorage.getItem('t_cart') || '[]'
+    );
+
+    if (Array.isArray(savedCart)) {
+        cart = savedCart.filter(item =>
+            P.some(product => product.id === item.id) &&
+            Number.isInteger(item.q) &&
+            item.q > 0
+        );
+    }
+} catch (error) {
+    console.warn('Erro ao carregar carrinho:', error);
+    cart = [];
+}
+
+const save = () => {
+    try {
+        localStorage.setItem('t_cart', JSON.stringify(cart));
+    } catch (error) {
+        console.warn('Não foi possível salvar o carrinho.', error);
+    }
+
+    const counter = $('#cnt');
+
+    if (counter) {
+        counter.textContent = cart.reduce(
+            (total, item) => total + item.q,
+            0
+        );
+    }
+};
+
+const subtotalCart = () => {
+    return cart.reduce((total, item) => {
+        const product = P.find(p => p.id === item.id);
+        return total + (product ? product.p * item.q : 0);
+    }, 0);
+};
+
+
+/* 4. COMPONENTES DOS PRODUTOS */
+
+const art = product => `
+    <div class="art" style="--bg:${product.bg};--fg:${product.fg}">
+        <img
+            src="${product.img}"
+            alt="${product.n}"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    </div>
+`;
+
+const price = product => `
+    <div class="price">
+        ${product.o ? `<s>${brl(product.o)}</s>` : ''}
+        ${brl(product.p)}
+        ${
+            product.o
+                ? `<span class="tag">
+                    -${Math.round(100 - product.p / product.o * 100)}%
+                   </span>`
+                : ''
+        }
+    </div>
+`;
+
+const card = product => `
+    <a class="card rv" href="#/produto/${product.id}">
+        ${art(product)}
+        <div class="cat">${product.c}</div>
+        <h3>${product.n}</h3>
+        ${price(product)}
+    </a>
+`;
+
+
+/* 5. NOTIFICAÇÕES */
+
+function toast(message) {
+    const notification = document.createElement('div');
+
+    notification.className = 'toast';
+    notification.textContent = message;
+
+    document.body.append(notification);
+
+    requestAnimationFrame(() => {
+        notification.classList.add('on');
+    });
+
+    setTimeout(() => {
+        notification.classList.remove('on');
+
+        setTimeout(() => {
+            notification.remove();
+        }, 400);
+    }, 2200);
+}
+
+
+/* 6. PÁGINAS DA LOJA */
+
+const V = {
+
+    home: () => `
+        <div class="hero">
+            <div class="sun l"></div>
+            <div class="sun"></div>
+
+            <div style="position:relative">
+                <h1 aria-label="Tournesol*">${'Tournesol'.split('').map((l, i) => `<span aria-hidden="true" style="--i:${i}">${l}</span>`).join('')}<b aria-hidden="true">*</b></h1>
+
+                <p>
+                    Alfaiataria de rua · Drop 04 · Outono/Inverno 26
+                </p>
+
+                <a class="btn" href="#/loja">
+                    Ver coleção
+                </a>
+            </div>
+        </div>
+
+        <section>
+            <div class="h2 rv">
+                Em destaque
+                <small><a href="#/loja">Ver tudo →</a></small>
+            </div>
+
+            <div class="grid">
+                ${P.slice(0, 4).map(card).join('')}
+            </div>
+        </section>
+
+        <section>
+            <div class="h2 rv">Coleções</div>
+
+            <div class="cols rv">
+                <a class="col"
+                    href="#/loja/Alfaiataria"
+                    style="background:var(--sun)">
+                    <small>01</small>
+                    <h3>Alfaiataria<br>de rua</h3>
+                    <small>Explorar →</small>
+                </a>
+
+                <a class="col"
+                    href="#/loja/Streetwear"
+                    style="background:var(--tom);color:var(--cream)">
+                    <small>02</small>
+                    <h3>Streetwear<br>sartorial</h3>
+                    <small>Explorar →</small>
+                </a>
+
+                <a class="col"
+                    href="#/loja/Casacos"
+                    style="background:var(--pink)">
+                    <small>03</small>
+                    <h3>Casacos<br>& camadas</h3>
+                    <small>Explorar →</small>
+                </a>
+            </div>
+        </section>
+
+        <section class="manifesto">
+            <p class="rv">
+                Roupa que veste o <em>terno</em>
+                com atitude de <em>rua</em>.
+
+                Pequenas tiragens, cortes precisos
+                e cor onde ninguém espera.
+            </p>
+        </section>
+
+        <section>
+            <div class="h2 rv">
+                Novidades
+                <small>Chegou agora</small>
+            </div>
+
+            <div class="grid">
+                ${P.slice(4).map(card).join('')}
+            </div>
+        </section>
+    `,
+
+    loja: category => {
+        const categories = [
+            'Todas',
+            ...new Set(P.map(product => product.c))
+        ];
+
+        const filteredProducts = P.filter(product => {
+            return !category || product.c === category;
+        });
+
+        return `
+            <section>
+                <div class="h2 rv">
+                    Loja
+                    <small>${category || 'Todas'}</small>
+                </div>
+
+                <div class="filters">
+                    ${categories.map(categoryName => `
+                        <a
+                            class="chip ${
+                                (category || 'Todas') === categoryName
+                                    ? 'on'
+                                    : ''
+                            }"
+                            href="#/loja${
+                                categoryName === 'Todas'
+                                    ? ''
+                                    : '/' + encodeURIComponent(categoryName)
+                            }">
+                            ${categoryName}
+                        </a>
+                    `).join('')}
+                </div>
+
+                <div class="grid">
+                    ${filteredProducts.map(card).join('')}
+                </div>
+            </section>
+        `;
+    },
+
+    produto: id => {
+        const product = P.find(item => item.id == id);
+
+        if (!product) {
+            return V.loja();
+        }
+
+        window.sel = {
+            id: product.id,
+            t: product.t[0],
+            c: product.cores[0][0]
+        };
+
+        return `
+            <div class="pd">
+
+                <div class="rv">
+                    ${art(product)}
+                </div>
+
+                <div class="rv">
+                    <div class="crumb">
+                        <a href="#/loja">Loja</a>
+                        / ${product.c}
+                    </div>
+
+                    <h1>${product.n}</h1>
+
+                    ${price(product)}
+
+                    <p>${product.d}</p>
+
+                    <div class="lbl">
+                        Cor — <span id="cn">${product.cores[0][0]}</span>
+                    </div>
+
+                    ${product.cores.map((color, index) => `
+                        <button
+                            class="sw ${index === 0 ? 'on' : ''}"
+                            style="background:${color[1]}"
+                            aria-label="Cor ${color[0]}"
+                            onclick="pick('c','${color[0]}',this,'.sw')">
+                        </button>
+                    `).join('')}
+
+                    <div class="lbl">Tamanho</div>
+
+                    ${product.t.map((size, index) => `
+                        <button
+                            class="sz ${index === 0 ? 'on' : ''}"
+                            onclick="pick('t','${size}',this,'.sz')">
+                            ${size}
+                        </button>
+                    `).join('')}
+
+                    <div style="margin-top:30px">
+                        <button class="btn" onclick="add(${product.id}, this)">
+                            Adicionar à sacola
+                        </button>
+                    </div>
+
+                    <p style="margin-top:20px;opacity:.6;font-size:13px">
+                        Troca grátis em 30 dias ·
+                        Pague em até 6x sem juros
+                    </p>
+                </div>
+            </div>
+
+            <section>
+                <div class="h2 rv">Combine com</div>
+
+                <div class="grid">
+                    ${P.filter(item => item.id !== product.id)
+                        .slice(0, 4)
+                        .map(card)
+                        .join('')}
+                </div>
+            </section>
+        `;
+    },
+
+    carrinho: () => {
+        const subtotal = subtotalCart();
+
+        return `
+            <div class="cart">
+                <div class="h2">Sacola</div>
+
+                ${
+                    cart.length
+                        ? `
+                            ${cart.map((item, index) => {
+                                const product = P.find(
+                                    p => p.id === item.id
+                                );
+
+                                if (!product) return '';
+
+                                return `
+                                    <div class="row">
+                                        ${art(product)}
+
+                                        <div>
+                                            <b style="color:inherit">
+                                                ${product.n}
+                                            </b>
+
+                                            <br>
+
+                                            <small>
+                                                ${item.c} ·
+                                                ${item.t} ·
+                                                ${item.q}x
+                                            </small>
+
+                                            <br>
+
+                                            <button onclick="rm(${index})">
+                                                remover
+                                            </button>
+                                        </div>
+
+                                        <div class="price">
+                                            ${brl(product.p * item.q)}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+
+                            <div class="box">
+                                <div class="lbl" style="margin-top:0">
+                                    Calcular frete
+                                </div>
+
+                                <input
+                                    id="cep"
+                                    placeholder="00000-000"
+                                    maxlength="9"
+                                    inputmode="numeric"
+                                    autocomplete="postal-code">
+
+                                <button class="btn"
+                                    onclick="frete(${subtotal})">
+                                    Calcular
+                                </button>
+
+                                <div id="fr"></div>
+                            </div>
+
+                            <div class="tot">
+                                <span>Subtotal</span>
+                                <span id="tt">${brl(subtotal)}</span>
+                            </div>
+
+                            <p style="margin-top:20px">
+                                <a class="btn"
+                                    href="#"
+                                    onclick="toast('Checkout é a próxima etapa do projeto');return false">
+                                    Finalizar compra
+                                </a>
+                            </p>
+                        `
+                        : `
+                            <p>Sua sacola está vazia.</p>
+
+                            <p style="margin-top:20px">
+                                <a class="btn" href="#/loja">
+                                    Ir às compras
+                                </a>
+                            </p>
+                        `
+                }
+            </div>
+        `;
+    }
+};
+
+
+/* 7. SELEÇÃO DE COR E TAMANHO */
+
+window.pick = (key, value, element, selector) => {
+    if (!window.sel) return;
+
+    window.sel[key] = value;
+
+    document.querySelectorAll('.pd ' + selector)
+        .forEach(item => item.classList.remove('on'));
+
+    element.classList.add('on');
+
+    if (key === 'c') {
+        const colorName = $('#cn');
+
+        if (colorName) {
+            colorName.textContent = value;
+        }
+    }
+};
+
+
+/* 8. ADICIONAR PRODUTOS AO CARRINHO */
+
+const FLOR = '<svg class="flor" aria-hidden="true"><use href="#flor"/></svg>';
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+window.add = (id, button) => {
+    const selection = window.sel;
+
+    if (!selection || selection.id !== id) {
+        toast('Selecione um tamanho e uma cor.');
+        return;
+    }
+
+    if (button && button.dataset.busy) return;
+
+    const { t, c } = selection;
+
+    const commit = () => {
+        const existing = cart.find(item =>
+            item.id === id && item.t === t && item.c === c
+        );
+
+        if (existing) {
+            existing.q++;
+        } else {
+            cart.push({ id, t, c, q: 1 });
+        }
+
+        save();
+        toast('Adicionado à sacola ✺');
+    };
+
+    if (!button) {
+        commit();
+        return;
+    }
+
+    // flor girando no botão, depois confirma
+    const label = button.innerHTML;
+
+    button.dataset.busy = '1';
+    button.style.minWidth = button.offsetWidth + 'px';
+    button.innerHTML = FLOR;
+
+    setTimeout(() => {
+        commit();
+        button.innerHTML = label;
+        delete button.dataset.busy;
+    }, 650);
+};
+
+
+/* 9. REMOVER PRODUTOS DO CARRINHO */
+
+window.rm = index => {
+    cart.splice(index, 1);
+    save();
+    render(true);
+};
+
+
+/* 10. CÁLCULO DE FRETE */
+
+async function frete(subtotal) {
+    const input = $('#cep');
+    const result = $('#fr');
+
+    if (!input || !result) return;
+
+    const cep = input.value.replace(/\D/g, '');
+
+    if (cep.length !== 8) {
+        result.innerHTML = '<p>Informe um CEP válido com 8 dígitos.</p>';
+        return;
+    }
+
+    const started = performance.now();
+    result.innerHTML = `<p class="loading">${FLOR} Calculando frete...</p>`;
+
+    let response;
+
+    try {
+        const request = await fetch(
+            `/api/frete?cep=${cep}&subtotal=${subtotal}`
+        );
+
+        if (!request.ok) {
+            throw new Error('Erro ao consultar frete.');
+        }
+
+        response = await request.json();
+
+        if (!Array.isArray(response.opcoes) || !response.opcoes.length) {
+            throw new Error('Resposta de frete inválida.');
+        }
+
+    } catch (error) {
+        console.warn(
+            'API indisponível. Utilizando cálculo local.',
+            error
+        );
+
+        response = local(cep, subtotal);
+    }
+
+    await wait(Math.max(0, 750 - (performance.now() - started)));
+
+    result.innerHTML = `
+        ${response.opcoes.map((option, index) => `
+            <label class="opt">
+                <span>
+                    <input
+                        type="radio"
+                        name="fx"
+                        style="width:auto"
+                        ${index === 0 ? 'checked' : ''}
+                        onchange="tot(${subtotal},${option.valor})">
+
+                    ${option.nome} · ${option.prazo} dias úteis
+                </span>
+
+                <b style="color:inherit">
+                    ${option.valor ? brl(option.valor) : 'Grátis'}
+                </b>
+            </label>
+        `).join('')}
+
+        <small>${response.regiao || ''}</small>
+    `;
+
+    tot(subtotal, response.opcoes[0].valor);
+}
+
+window.frete = frete;
+
+
+/* 11. ATUALIZAR VALOR TOTAL */
+
+window.tot = (subtotal, shipping) => {
+    const total = $('#tt');
+
+    if (!total) return;
+
+    total.textContent = brl(subtotal + shipping);
+};
+
+
+/* 12. CÁLCULO LOCAL DE FRETE */
+
+function local(cep, subtotal) {
+    const T = {
+        0: [22, 5],
+        1: [22, 5],
+        2: [26, 6],
+        3: [28, 7],
+        4: [34, 9],
+        5: [38, 10],
+        6: [44, 12],
+        7: [36, 9],
+        8: [24, 6],
+        9: [26, 7]
+    };
+
+    const [value, days] = T[cep[0]];
+
+    return {
+        regiao: 'Estimativa offline (rode server.py para a API)',
+
+        opcoes: [
+            {
+                nome: 'PAC',
+                valor: subtotal >= 800 ? 0 : value,
+                prazo: days
+            },
+            {
+                nome: 'SEDEX',
+                valor: +(value * 1.7).toFixed(2),
+                prazo: Math.ceil(days / 2)
+            }
+        ]
+    };
+}
+
+
+/* 13. SISTEMA DE NAVEGAÇÃO */
+
+function render(quiet = false) {
+    const [, route, parameter] = (
+        location.hash || '#/'
+    ).split('/');
+
+    const decodedParameter = parameter
+        ? decodeURIComponent(parameter)
+        : parameter;
+
+    const go = () => {
+        const app = $('#app');
+
+        if (!app) return;
+
+        if (route === 'loja') {
+            app.innerHTML = V.loja(decodedParameter);
+
+        } else if (route === 'produto') {
+            app.innerHTML = V.produto(decodedParameter);
+
+        } else if (route === 'carrinho') {
+            app.innerHTML = V.carrinho();
+
+        } else {
+            app.innerHTML = V.home();
+        }
+
+        if (!quiet) {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        io();
+    };
+
+    if (quiet) {
+        go();
+        return;
+    }
+
+    const curtain = $('#curtain');
+
+    if (!curtain) {
+        go();
+        return;
+    }
+
+    curtain.classList.remove('go');
+
+    void curtain.offsetWidth;
+
+    curtain.classList.add('go');
+
+    setTimeout(go, 500);
+}
+
+
+/* 14. ANIMAÇÕES AO ROLAR A PÁGINA */
+
+// Revela elementos quando entram na área visível.
+let obs = null;
+
+if ('IntersectionObserver' in window) {
+    obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -6% 0px'
+    });
+}
+
+// Ativa as animações em todos os elementos .rv.
+const io = () => {
+    const elements = document.querySelectorAll('.rv:not(.in)');
+
+    elements.forEach(element => {
+        if (obs) {
+            obs.observe(element);
+        } else {
+            element.classList.add('in');
+        }
+    });
+};
+
+
+/* 15. INICIALIZAÇÃO DO SITE */
+
+save();
+
+// Renderiza a página inicial.
+render(true);
+
+// Escuta mudanças de rota.
+window.addEventListener('hashchange', () => {
+    render();
+});
+
+// Garante que os elementos sejam revelados após o carregamento.
+window.addEventListener('load', () => {
+    io();
+});
+
+// Atualiza as animações caso a janela seja redimensionada.
+window.addEventListener('resize', () => {
+    io();
+});
+
+
+/* 16. TEMA ESCURO (botão + código secreto) */
+
+const THEME_KEY = 't_theme';
+const themeBtn = $('#theme');
+let themeBusy = false;
+
+const isDark = () => document.documentElement.dataset.theme === 'dark';
+
+function applyTheme(dark) {
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+
+    if (themeBtn) {
+        themeBtn.setAttribute('aria-pressed', String(dark));
+    }
+
+    try {
+        localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
+    } catch (error) {
+        console.warn('Não foi possível salvar o tema.', error);
+    }
+}
+
+// Troca o tema com uma onda circular que nasce de (x, y).
+function setTheme(dark, x = innerWidth / 2, y = innerHeight / 2, secret = false) {
+    if (themeBusy) return;
+
+    if (dark === isDark()) {
+        if (secret) toast('Já é noite por aqui ✺');
+        return;
+    }
+
+    const done = () => {
+        if (secret) toast('Modo noite ativado ✺');
+    };
+
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduce || !document.body.animate) {
+        applyTheme(dark);
+        done();
+        return;
+    }
+
+    themeBusy = true;
+
+    const wipe = document.createElement('div');
+    wipe.className = 'wipe';
+    wipe.style.background = dark ? '#15110e' : '#f3ead8';
+    wipe.innerHTML = FLOR;
+    document.body.append(wipe);
+
+    wipe.animate([
+        { clipPath: `circle(0px at ${x}px ${y}px)` },
+        { clipPath: `circle(150vmax at ${x}px ${y}px)` }
+    ], {
+        duration: 700,
+        easing: 'cubic-bezier(.77, 0, .18, 1)'
+    }).onfinish = () => {
+        applyTheme(dark);
+
+        wipe.animate([{ opacity: 1 }, { opacity: 0 }], {
+            duration: 350,
+            fill: 'forwards'
+        }).onfinish = () => {
+            wipe.remove();
+            themeBusy = false;
+            done();
+        };
+    };
+}
+
+if (themeBtn) {
+    themeBtn.setAttribute('aria-pressed', String(isDark()));
+
+    themeBtn.addEventListener('click', () => {
+        const box = themeBtn.getBoundingClientRect();
+        setTheme(!isDark(), box.left + box.width / 2, box.top + box.height / 2);
+    });
+}
+
+// Código secreto: digitar "tournesol*" (fora de campos de texto) liga o modo noite.
+const SECRET = 'tournesol*';
+let typed = '';
+
+window.addEventListener('keydown', event => {
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+    const el = event.target;
+
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) {
+        return;
+    }
+
+    if (event.key.length !== 1) return;
+
+    typed = (typed + event.key.toLowerCase()).slice(-SECRET.length);
+
+    if (typed === SECRET) {
+        typed = '';
+        setTheme(true, innerWidth / 2, innerHeight / 2, true);
+    }
+});
+
+
+/* FIM DO APP.JS — TOURNESOL* */
+
+    </script>
+
+    <!-- server.py (Python): API de frete. O navegador não executa Python, então este bloco é só referência/backup.
+         Para usá-lo, salve o conteúdo abaixo como server.py e rode "python server.py". Sem ele, o site usa o cálculo local em JavaScript. -->
+    <script type="text/x-python" id="server-py">
+
+"""Servidor Tournesol*: arquivos estáticos + API de frete.
+Uso: python server.py
+Acesse: http://localhost:8000/
+"""
+
+import json
+import math
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import urlparse, parse_qs
+
+
+# Primeiro dígito do CEP -> (região, valor PAC, prazo PAC em dias úteis)
+TABELA = {
+    0: ("São Paulo (capital)", 22, 5),
+    1: ("São Paulo (interior)", 22, 5),
+    2: ("RJ / ES", 26, 6),
+    3: ("Minas Gerais", 28, 7),
+    4: ("BA / SE", 34, 9),
+    5: ("Nordeste", 38, 10),
+    6: ("Norte", 44, 12),
+    7: ("Centro-Oeste", 36, 9),
+    8: ("Sul (PR/SC)", 24, 6),
+    9: ("Rio Grande do Sul", 26, 7),
+}
+
+FRETE_GRATIS = 800
+
+
+def calcular(cep, subtotal):
+    """Calcula as opções de frete com base no CEP e subtotal."""
+
+    regiao, pac, prazo = TABELA[int(cep[0])]
+
+    valor_pac = 0 if subtotal >= FRETE_GRATIS else pac
+
+    return {
+        "cep": cep,
+        "regiao": regiao,
+        "opcoes": [
+            {
+                "nome": "PAC",
+                "valor": valor_pac,
+                "prazo": prazo
+            },
+            {
+                "nome": "SEDEX",
+                "valor": round(pac * 1.7, 2),
+                "prazo": math.ceil(prazo / 2)
+            }
+        ]
+    }
+
+
+class H(SimpleHTTPRequestHandler):
+
+    def do_GET(self):
+        u = urlparse(self.path)
+
+        if u.path == "/api/frete":
+            q = parse_qs(u.query)
+
+            cep = "".join(
+                c for c in q.get("cep", [""])[0]
+                if c.isdigit()
+            )
+
+            if len(cep) != 8:
+                return self.json(
+                    {"erro": "CEP inválido. Informe 8 dígitos."},
+                    400
+                )
+
+            try:
+                subtotal = float(
+                    q.get("subtotal", ["0"])[0] or 0
+                )
+
+                if not math.isfinite(subtotal) or subtotal < 0:
+                    raise ValueError
+
+            except (ValueError, TypeError):
+                return self.json(
+                    {"erro": "Subtotal inválido."},
+                    400
+                )
+
+            return self.json(calcular(cep, subtotal))
+
+        return super().do_GET()
+
+    def json(self, dados, status=200):
+        resposta = json.dumps(
+            dados,
+            ensure_ascii=False
+        ).encode("utf-8")
+
+        self.send_response(status)
+        self.send_header(
+            "Content-Type",
+            "application/json; charset=utf-8"
+        )
+        self.send_header(
+            "Content-Length",
+            str(len(resposta))
+        )
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+
+        self.wfile.write(resposta)
+
+
+if __name__ == "__main__":
+    print("Tournesol* rodando em http://localhost:8000")
+
+    servidor = ThreadingHTTPServer(
+        ("", 8000),
+        H
+    )
+
+    try:
+        servidor.serve_forever()
+    except KeyboardInterrupt:
+        print("\nServidor encerrado.")
+        servidor.server_close()
+
+    </script>
+
+</body>
+</html>
